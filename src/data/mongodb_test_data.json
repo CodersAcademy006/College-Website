@@ -1,0 +1,59 @@
+{
+  "collections": [
+    {
+      "name": "chat_messages",
+      "documents": [
+        {
+          "_id": ObjectId("507f1f77bcf86cd799439011"),
+          "roomId": "CS101",
+          "senderId": "123",
+          "senderName": "John Doe",
+          "content": "Hello everyone!",
+          "timestamp": ISODate("2024-03-20T10:00:00Z"),
+          "type": "text",
+          "status": "delivered"
+        },
+        {
+          "_id": ObjectId("507f1f77bcf86cd799439012"),
+          "roomId": "CS101",
+          "senderId": "456",
+          "senderName": "Jane Smith",
+          "content": "Welcome to the course!",
+          "timestamp": ISODate("2024-03-20T10:01:00Z"),
+          "type": "text",
+          "status": "delivered"
+        }
+      ]
+    },
+    {
+      "name": "chat_rooms",
+      "documents": [
+        {
+          "_id": ObjectId("507f1f77bcf86cd799439013"),
+          "roomId": "CS101",
+          "name": "Introduction to Programming",
+          "type": "course",
+          "participants": ["123", "456"],
+          "createdAt": ISODate("2024-03-20T09:00:00Z"),
+          "lastMessage": {
+            "content": "Welcome to the course!",
+            "timestamp": ISODate("2024-03-20T10:01:00Z"),
+            "senderId": "456"
+          }
+        }
+      ]
+    },
+    {
+      "name": "user_presence",
+      "documents": [
+        {
+          "_id": ObjectId("507f1f77bcf86cd799439014"),
+          "userId": "123",
+          "status": "online",
+          "lastSeen": ISODate("2024-03-20T10:05:00Z"),
+          "activeRooms": ["CS101"]
+        }
+      ]
+    }
+  ]
+} 

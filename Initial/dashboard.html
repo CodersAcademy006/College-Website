@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- Toggle Button -->
+    <div class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <h1><i class="fas fa-graduation-cap"></i> College Management</h1>
+            <div class="role-selector">
+                <div class="role-option active" data-role="admin">Admin</div>
+                <div class="role-option" data-role="teacher">Teacher</div>
+                <div class="role-option" data-role="student">Student</div>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button class="login-btn" onclick="login()">Login</button>
+            <div class="login-footer">
+                <p>Forgot password? <a href="#">Reset here</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Application -->
+    <div class="container" id="appContainer" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>College Management</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active" data-page="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                <li><a href="#" data-page="students"><i class="fas fa-user-graduate"></i> <span>Students</span></a></li>
+                <li><a href="#" data-page="teachers"><i class="fas fa-chalkboard-teacher"></i> <span>Teachers</span></a></li>
+                <li><a href="#" data-page="courses"><i class="fas fa-book"></i> <span>Courses</span></a></li>
+                <li><a href="#" data-page="schedule"><i class="fas fa-calendar-alt"></i> <span>Schedule</span></a></li>
+                <li><a href="#" data-page="attendance"><i class="fas fa-clipboard-list"></i> <span>Attendance</span></a></li>
+                <li><a href="#" data-page="exams"><i class="fas fa-file-invoice"></i> <span>Exams</span></a></li>
+                <li><a href="#" data-page="reports"><i class="fas fa-chart-bar"></i> <span>Reports</span></a></li>
+                <li><a href="#" data-page="settings"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+            </ul>
+            <div class="user-info">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                <div class="user-details">
+                    <h4>Admin User</h4>
+                    <p>Administrator</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <h2 id="pageTitle">Dashboard</h2>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="user-menu">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                        <div>
+                            <h4>Admin User</h4>
+                            <p>Administrator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dashboard Page -->
+            <div class="page active" id="dashboard-page">
+                <!-- Dashboard Cards -->
+                <div class="dashboard-cards">
+                    <div class="card students">
+                        <div class="card-header">
+                            <h3>Students</h3>
+                            <div class="card-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h2>1,254</h2>
+                            <p>+12% from last month</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card teachers">
+                        <div class="card-header">
+                            <h3>Teachers</h3>
+                            <div class="card-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h2>84</h2>
+                            <p>+3 new this month</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card courses">
+                        <div class="card-header">
+                            <h3>Courses</h3>
+                            <div class="card-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h2>56</h2>
+                            <p>8 ongoing courses</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card events">
+                        <div class="card-header">
+                            <h3>Events</h3>
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h2>12</h2>
+                            <p>3 upcoming events</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Charts -->
+                <div class="charts">
+                    <div class="chart-container">
+                        <h3>Attendance Overview</h3>
+                        <div class="chart-placeholder">
+                            Attendance Chart Visualization
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>Performance Summary</h3>
+                        <div class="chart-placeholder">
+                            Performance Chart Visualization
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activities -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Recent Activities</h3>
+                        <button class="btn btn-primary btn-sm">View All</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Activity</th>
+                                    <th>User</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Added new course "Advanced Programming"</td>
+                                    <td>Admin User</td>
+                                    <td>Jun 17, 2023</td>
+                                    <td><span class="status present">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Updated student records</td>
+                                    <td>John Smith</td>
+                                    <td>Jun 16, 2023</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Submitted assignment #5</td>
+                                    <td>Emily Johnson</td>
+                                    <td>Jun 15, 2023</td>
+                                    <td><span class="status present">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Marked attendance for Class B</td>
+                                    <td>Prof. Robert</td>
+                                    <td>Jun 14, 2023</td>
+                                    <td><span class="status present">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Created new exam schedule</td>
+                                    <td>Admin User</td>
+                                    <td>Jun 13, 2023</td>
+                                    <td><span class="status present">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Attendance Records -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Today's Attendance</h3>
+                        <button class="btn btn-primary btn-sm">Take Attendance</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Course</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>S001</td>
+                                    <td>John Smith</td>
+                                    <td>Computer Science</td>
+                                    <td>09:00 AM</td>
+                                    <td><span class="status present">Present</span></td>
+                                </tr>
+                                <tr>
+                                    <td>S002</td>
+                                    <td>Emily Johnson</td>
+                                    <td>Mathematics</td>
+                                    <td>09:00 AM</td>
+                                    <td><span class="status present">Present</span></td>
+                                </tr>
+                                <tr>
+                                    <td>S003</td>
+                                    <td>Michael Brown</td>
+                                    <td>Physics</td>
+                                    <td>10:30 AM</td>
+                                    <td><span class="status absent">Absent</span></td>
+                                </tr>
+                                <tr>
+                                    <td>S004</td>
+                                    <td>Sarah Williams</td>
+                                    <td>Literature</td>
+                                    <td>11:00 AM</td>
+                                    <td><span class="status present">Present</span></td>
+                                </tr>
+                                <tr>
+                                    <td>S005</td>
+                                    <td>David Miller</td>
+                                    <td>History</td>
+                                    <td>01:00 PM</td>
+                                    <td><span class="status pending">Not Marked</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Students Page -->
+            <div class="page" id="students-page">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Student Management</h3>
+                        <button class="btn btn-primary" id="addStudentBtn">Add New Student</button>
+                    </div>
+                    
+                    <div class="student-grid">
+                        <div class="student-card">
+                            <div class="student-header">
+                                <div class="student-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h3>John Smith</h3>
+                                <p>Computer Science</p>
+                            </div>
+                            <div class="student-info">
+                                <p><i class="fas fa-id-card"></i> S001</p>
+                                <p><i class="fas fa-envelope"></i> john@college.edu</p>
+                                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                                <p>Attendance: 85%</p>
+                            </div>
+                        </div>
+                        
+                        <div class="student-card">
+                            <div class="student-header">
+                                <div class="student-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h3>Emily Johnson</h3>
+                                <p>Mathematics</p>
+                            </div>
+                            <div class="student-info">
+                                <p><i class="fas fa-id-card"></i> S002</p>
+                                <p><i class="fas fa-envelope"></i> emily@college.edu</p>
+                                <p><i class="fas fa-phone"></i> (555) 987-6543</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 92%"></div>
+                                </div>
+                                <p>Attendance: 92%</p>
+                            </div>
+                        </div>
+                        
+                        <div class="student-card">
+                            <div class="student-header">
+                                <div class="student-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h3>Michael Brown</h3>
+                                <p>Physics</p>
+                            </div>
+                            <div class="student-info">
+                                <p><i class="fas fa-id-card"></i> S003</p>
+                                <p><i class="fas fa-envelope"></i> michael@college.edu</p>
+                                <p><i class="fas fa-phone"></i> (555) 456-7890</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 78%"></div>
+                                </div>
+                                <p>Attendance: 78%</p>
+                            </div>
+                        </div>
+                        
+                        <div class="student-card">
+                            <div class="student-header">
+                                <div class="student-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h3>Sarah Williams</h3>
+                                <p>Literature</p>
+                            </div>
+                            <div class="student-info">
+                                <p><i class="fas fa-id-card"></i> S004</p>
+                                <p><i class="fas fa-envelope"></i> sarah@college.edu</p>
+                                <p><i class="fas fa-phone"></i> (555) 321-6547</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 88%"></div>
+                                </div>
+                                <p>Attendance: 88%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive" style="margin-top: 30px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Course</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>S001</td>
+                                    <td>John Smith</td>
+                                    <td>Computer Science</td>
+                                    <td>john@college.edu</td>
+                                    <td>(555) 123-4567</td>
+                                    <td><span class="status present">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>S002</td>
+                                    <td>Emily Johnson</td>
+                                    <td>Mathematics</td>
+                                    <td>emily@college.edu</td>
+                                    <td>(555) 987-6543</td>
+                                    <td><span class="status present">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>S003</td>
+                                    <td>Michael Brown</td>
+                                    <td>Physics</td>
+                                    <td>michael@college.edu</td>
+                                    <td>(555) 456-7890</td>
+                                    <td><span class="status present">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>S004</td>
+                                    <td>Sarah Williams</td>
+                                    <td>Literature</td>
+                                    <td>sarah@college.edu</td>
+                                    <td>(555) 321-6547</td>
+                                    <td><span class="status present">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>S005</td>
+                                    <td>David Miller</td>
+                                    <td>History</td>
+                                    <td>david@college.edu</td>
+                                    <td>(555) 654-3210</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Courses Page -->
+            <div class="page" id="courses-page">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Course Management</h3>
+                        <button class="btn btn-primary" id="addCourseBtn">Add New Course</button>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-header">
+                            <h3>Computer Science 101</h3>
+                            <span>CS101</span>
+                        </div>
+                        <div class="course-body">
+                            <p>Introduction to programming concepts and algorithms using Python.</p>
+                            <div class="course-stats">
+                                <div class="stat">
+                                    <div class="stat-value">42</div>
+                                    <div class="stat-label">Students</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">Dr. Smith</div>
+                                    <div class="stat-label">Instructor</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">Mon, Wed, Fri</div>
+                                    <div class="stat-label">Schedule</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-header">
+                            <h3>Advanced Mathematics</h3>
+                            <span>MATH301</span>
+                        </div>
+                        <div class="course-body">
+                            <p>Advanced calculus and linear algebra concepts with practical applications.</p>
+                            <div class="course-stats">
+                                <div class="stat">
+                                    <div class="stat-value">35</div>
+                                    <div class="stat-label">Students</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">Prof. Johnson</div>
+                                    <div class="stat-label">Instructor</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">Tue, Thu</div>
+                                    <div class="stat-label">Schedule</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card">
+                        <div class="course-header">
+                            <h3>Modern Physics</h3>
+                            <span>PHY202</span>
+                        </div>
+                        <div class="course-body">
+                            <p>Exploring quantum mechanics and relativity theories.</p>
+                            <div class="course-stats">
+                                <div class="stat">
+                                    <div class="stat-value">28</div>
+                                    <div class="stat-label">Students</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">Dr. Brown</div>
+                                    <div class="stat-label">Instructor</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">Mon, Wed</div>
+                                    <div class="stat-label">Schedule</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive" style="margin-top: 30px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Course Name</th>
+                                    <th>Department</th>
+                                    <th>Instructor</th>
+                                    <th>Students</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CS101</td>
+                                    <td>Computer Science 101</td>
+                                    <td>Computer Science</td>
+                                    <td>Dr. Smith</td>
+                                    <td>42</td>
+                                    <td><span class="status present">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>MATH301</td>
+                                    <td>Advanced Mathematics</td>
+                                    <td>Mathematics</td>
+                                    <td>Prof. Johnson</td>
+                                    <td>35</td>
+                                    <td><span class="status present">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>PHY202</td>
+                                    <td>Modern Physics</td>
+                                    <td>Physics</td>
+                                    <td>Dr. Brown</td>
+                                    <td>28</td>
+                                    <td><span class="status present">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>LIT205</td>
+                                    <td>World Literature</td>
+                                    <td>Literature</td>
+                                    <td>Prof. Davis</td>
+                                    <td>38</td>
+                                    <td><span class="status present">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td>HIST110</td>
+                                    <td>Modern History</td>
+                                    <td>History</td>
+                                    <td>Dr. Wilson</td>
+                                    <td>31</td>
+                                    <td><span class="status pending">Upcoming</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Schedule Page -->
+            <div class="page" id="schedule-page">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Class Schedule</h3>
+                        <button class="btn btn-primary" id="addScheduleBtn">Add New Schedule</button>
+                    </div>
+                    
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <h3>June 2023</h3>
+                            <div>
+                                <button class="btn btn-sm"><i class="fas fa-chevron-left"></i></button>
+                                <button class="btn btn-primary btn-sm">Today</button>
+                                <button class="btn btn-sm"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="calendar-grid">
+                            <div class="calendar-day">Sun</div>
+                            <div class="calendar-day">Mon</div>
+                            <div class="calendar-day">Tue</div>
+                            <div class="calendar-day">Wed</div>
+                            <div class="calendar-day">Thu</div>
+                            <div class="calendar-day">Fri</div>
+                            <div class="calendar-day">Sat</div>
+                            
+                            <!-- Calendar dates -->
+                            <div class="calendar-date">28</div>
+                            <div class="calendar-date">29</div>
+                            <div class="calendar-date">30</div>
+                            <div class="calendar-date">31</div>
+                            <div class="calendar-date">1</div>
+                            <div class="calendar-date">2</div>
+                            <div class="calendar-date">3</div>
+                            
+                            <div class="calendar-date">4</div>
+                            <div class="calendar-date">5</div>
+                            <div class="calendar-date">6</div>
+                            <div class="calendar-date">7</div>
+                            <div class="calendar-date event">8</div>
+                            <div class="calendar-date event">9</div>
+                            <div class="calendar-date">10</div>
+                            
+                            <div class="calendar-date">11</div>
+                            <div class="calendar-date active event">12</div>
+                            <div class="calendar-date">13</div>
+                            <div class="calendar-date event">14</div>
+                            <div class="calendar-date">15</div>
+                            <div class="calendar-date">16</div>
+                            <div class="calendar-date">17</div>
+                            
+                            <div class="calendar-date">18</div>
+                            <div class="calendar-date event">19</div>
+                            <div class="calendar-date">20</div>
+                            <div class="calendar-date event">21</div>
+                            <div class="calendar-date">22</div>
+                            <div class="calendar-date">23</div>
+                            <div class="calendar-date">24</div>
+                            
+                            <div class="calendar-date">25</div>
+                            <div class="calendar-date">26</div>
+                            <div class="calendar-date event">27</div>
+                            <div class="calendar-date">28</div>
+                            <div class="calendar-date">29</div>
+                            <div class="calendar-date">30</div>
+                            <div class="calendar-date">1</div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive" style="margin-top: 30px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Course</th>
+                                    <th>Instructor</th>
+                                    <th>Time</th>
+                                    <th>Location</th>
+                                    <th>Days</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Computer Science 101</td>
+                                    <td>Dr. Smith</td>
+                                    <td>9:00 AM - 10:30 AM</td>
+                                    <td>Building A, Room 205</td>
+                                    <td>Mon, Wed, Fri</td>
+                                </tr>
+                                <tr>
+                                    <td>Advanced Mathematics</td>
+                                    <td>Prof. Johnson</td>
+                                    <td>11:00 AM - 12:30 PM</td>
+                                    <td>Building C, Room 102</td>
+                                    <td>Tue, Thu</td>
+                                </tr>
+                                <tr>
+                                    <td>Modern Physics</td>
+                                    <td>Dr. Brown</td>
+                                    <td>2:00 PM - 3:30 PM</td>
+                                    <td>Building D, Room 310</td>
+                                    <td>Mon, Wed</td>
+                                </tr>
+                                <tr>
+                                    <td>World Literature</td>
+                                    <td>Prof. Davis</td>
+                                    <td>10:00 AM - 11:30 AM</td>
+                                    <td>Building B, Room 115</td>
+                                    <td>Tue, Thu</td>
+                                </tr>
+                                <tr>
+                                    <td>Modern History</td>
+                                    <td>Dr. Wilson</td>
+                                    <td>1:00 PM - 2:30 PM</td>
+                                    <td>Building E, Room 201</td>
+                                    <td>Mon, Fri</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Attendance Page -->
+            <div class="page" id="attendance-page">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h3>Attendance Management</h3>
+                        <button class="btn btn-primary" id="takeAttendanceBtn">Take Attendance</button>
+                    </div>
+                    
+                    <div class="attendance-controls">
+                        <select id="courseSelect">
+                            <option>Select Course</option>
+                            <option selected>Computer Science 101</option>
+                            <option>Advanced Mathematics</option>
+                            <option>Modern Physics</option>
+                            <option>World Literature</option>
+                            <option>Modern History</option>
+                        </select>
+                        
+                        <select id="dateSelect">
+                            <option>Select Date</option>
+                            <option selected>Today (June 17, 2023)</option>
+                            <option>June 16, 2023</option>
+                            <option>June 15, 2023</option>
+                            <option>June 14, 2023</option>
+                            <option>June 13, 2023</option>
+                        </select>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>S001</td>
+                                    <td>John Smith</td>
+                                    <td><span class="status present">Present</span></td>
+                                    <td>
+                                        <button class="btn btn-sm" data-status="present">Present</button>
+                                        <button class="btn btn-sm" data-status="absent">Absent</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>S002</td>
+                                    <td>Emily Johnson</td>
+                                    <td><span class="status present">Present</span></td>
+                                    <td>
+                                        <button class="btn btn-sm" data-status="present">Present</button>
+                                        <button class="btn btn-sm" data-status="absent">Absent</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>S003</td>
+                                    <td>Michael Brown</td>
+                                    <td><span class="status absent">Absent</span></td>
+                                    <td>
+                                        <button class="btn btn-sm" data-status="present">Present</button>
+                                        <button class="btn btn-sm" data-status="absent">Absent</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>S004</td>
+                                    <td>Sarah Williams</td>
+                                    <td><span class="status present">Present</span></td>
+                                    <td>
+                                        <button class="btn btn-sm" data-status="present">Present</button>
+                                        <button class="btn btn-sm" data-status="absent">Absent</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>S005</td>
+                                    <td>David Miller</td>
+                                    <td><span class="status pending">Not Marked</span></td>
+                                    <td>
+                                        <button class="btn btn-sm" data-status="present">Present</button>
+                                        <button class="btn btn-sm" data-status="absent">Absent</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="chart-container" style="margin-top: 30px;">
+                        <h3>Attendance Statistics</h3>
+                        <div class="chart-placeholder">
+                            Attendance Chart Visualization
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other pages would follow the same pattern -->
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

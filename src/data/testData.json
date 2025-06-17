@@ -1,0 +1,143 @@
+{
+  "students": [
+    {
+      "id": "ST001",
+      "name": "Emma Thompson",
+      "email": "student1@college.edu",
+      "course": "Computer Science",
+      "status": "active",
+      "attendance": 95,
+      "grades": {
+        "CS101": 88,
+        "CS102": 92
+      }
+    },
+    {
+      "id": "ST002",
+      "name": "James Wilson",
+      "email": "student2@college.edu",
+      "course": "Electronics",
+      "status": "active",
+      "attendance": 87,
+      "grades": {
+        "CS101": 76,
+        "CS102": 82
+      }
+    },
+    {
+      "id": "ST003",
+      "name": "Sophia Chen",
+      "email": "student3@college.edu",
+      "course": "Mechanical",
+      "status": "active",
+      "attendance": 92,
+      "grades": {
+        "CS101": 95,
+        "CS102": 89
+      }
+    },
+    {
+      "id": "ST004",
+      "name": "Lucas Rodriguez",
+      "email": "student4@college.edu",
+      "course": "Civil",
+      "status": "inactive",
+      "attendance": 65,
+      "grades": {
+        "CS101": 72,
+        "CS102": 68
+      }
+    },
+    {
+      "id": "ST005",
+      "name": "Olivia Kim",
+      "email": "student5@college.edu",
+      "course": "IT",
+      "status": "active",
+      "attendance": 88,
+      "grades": {
+        "CS101": 85,
+        "CS102": 90
+      }
+    }
+  ],
+  "faculty": [
+    {
+      "id": "FAC001",
+      "name": "Dr. Michael Anderson",
+      "email": "faculty1@college.edu",
+      "department": "Computer Science",
+      "courses": ["CS101", "CS102"],
+      "status": "active"
+    },
+    {
+      "id": "FAC002",
+      "name": "Prof. Sarah Martinez",
+      "email": "faculty2@college.edu",
+      "department": "Electronics",
+      "courses": ["CS103", "CS104"],
+      "status": "active"
+    },
+    {
+      "id": "FAC003",
+      "name": "Dr. Robert Johnson",
+      "email": "faculty3@college.edu",
+      "department": "Mechanical",
+      "courses": ["CS105", "CS106"],
+      "status": "active"
+    },
+    {
+      "id": "FAC004",
+      "name": "Prof. Lisa Wang",
+      "email": "faculty4@college.edu",
+      "department": "Civil",
+      "courses": ["CS107", "CS108"],
+      "status": "active"
+    },
+    {
+      "id": "FAC005",
+      "name": "Dr. David Brown",
+      "email": "faculty5@college.edu",
+      "department": "IT",
+      "courses": ["CS109", "CS110"],
+      "status": "active"
+    }
+  ],
+  "office": [
+    {
+      "id": "OFF001",
+      "name": "Jennifer Smith",
+      "email": "office1@college.edu",
+      "role": "Admin Assistant",
+      "status": "active"
+    },
+    {
+      "id": "OFF002",
+      "name": "Thomas Lee",
+      "email": "office2@college.edu",
+      "role": "Accounts",
+      "status": "active"
+    },
+    {
+      "id": "OFF003",
+      "name": "Maria Garcia",
+      "email": "office3@college.edu",
+      "role": "Admissions",
+      "status": "active"
+    },
+    {
+      "id": "OFF004",
+      "name": "John Davis",
+      "email": "office4@college.edu",
+      "role": "IT Support",
+      "status": "active"
+    },
+    {
+      "id": "OFF005",
+      "name": "Patricia Wilson",
+      "email": "office5@college.edu",
+      "role": "Admin Assistant",
+      "status": "active"
+    }
+  ]
+} 

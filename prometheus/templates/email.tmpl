@@ -1,0 +1,84 @@
+{{ define "email.default.subject" }}
+[{{ .Status | toUpper }}] {{ .GroupLabels.alertname }} - {{ .CommonAnnotations.summary }}
+{{ end }}
+
+{{ define "email.default.html" }}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ template "email.default.subject" . }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .alert-critical {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        .alert-warning {
+            color: #856404;
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+        }
+        .alert-info {
+            color: #0c5460;
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+        }
+        .details {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="alert alert-{{ .Status }}">
+        <h2>{{ .GroupLabels.alertname }}</h2>
+        <p><strong>Status:</strong> {{ .Status | toUpper }}</p>
+        <p><strong>Summary:</strong> {{ .CommonAnnotations.summary }}</p>
+        <p><strong>Description:</strong> {{ .CommonAnnotations.description }}</p>
+    </div>
+
+    <div class="details">
+        <h3>Alert Details:</h3>
+        <ul>
+            {{ range .Alerts }}
+            <li>
+                <strong>Severity:</strong> {{ .Labels.severity }}<br>
+                <strong>Instance:</strong> {{ .Labels.instance }}<br>
+                <strong>Started:</strong> {{ .StartsAt }}<br>
+                {{ if .EndsAt }}
+                <strong>Ended:</strong> {{ .EndsAt }}<br>
+                {{ end }}
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+
+    <a href="http://localhost:3000/d/college-website/college-website-dashboard" class="button">
+        View in Grafana
+    </a>
+</body>
+</html>
+{{ end }} 

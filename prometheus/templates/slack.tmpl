@@ -1,0 +1,32 @@
+{{ define "slack.default.title" }}
+[{{ .Status | toUpper }}] {{ .GroupLabels.alertname }}
+{{ end }}
+
+{{ define "slack.default.text" }}
+*Alert:* {{ .GroupLabels.alertname }}
+*Status:* {{ .Status | toUpper }}
+*Severity:* {{ .CommonLabels.severity }}
+*Summary:* {{ .CommonAnnotations.summary }}
+*Description:* {{ .CommonAnnotations.description }}
+
+{{ if .Alerts.Firing }}
+*Firing Alerts:*
+{{ range .Alerts.Firing }}
+• *Instance:* {{ .Labels.instance }}
+  *Started:* {{ .StartsAt }}
+  *Severity:* {{ .Labels.severity }}
+{{ end }}
+{{ end }}
+
+{{ if .Alerts.Resolved }}
+*Resolved Alerts:*
+{{ range .Alerts.Resolved }}
+• *Instance:* {{ .Labels.instance }}
+  *Started:* {{ .StartsAt }}
+  *Ended:* {{ .EndsAt }}
+  *Severity:* {{ .Labels.severity }}
+{{ end }}
+{{ end }}
+
+<http://localhost:3000/d/college-website/college-website-dashboard|View in Grafana>
+{{ end }} 
